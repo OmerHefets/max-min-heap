@@ -3,18 +3,16 @@
 
 int main()
 {
-
-    printf("%d", odd_or_even_depth(1));
-    printf("%d", odd_or_even_depth(2));
-    printf("%d", odd_or_even_depth(4));
-    printf("%d", odd_or_even_depth(6));
-    printf("%d", odd_or_even_depth(13));
-    printf("%d", odd_or_even_depth(20));
+    int arr[11] = {1000, 100, 15, 120, 150, 100, 100, 70, 60, 10, 125};
+    heapify(arr, 2, 11);
+    print_heap(arr, 11);
+    return 0;   
     /*
     int heap[MAX_HEAP_SIZE];
     int heap_size = 0;
     user_interface(heap, &heap_size);
     print_heap(heap, heap_size);
-    printf("\t%d\t", heap_size); */
+    printf("\t%d\t", heap_size);
     return 0;
+    */
 }

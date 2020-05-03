@@ -50,7 +50,6 @@ void read_heap(int* arr, int* heap_size)
             printf("No such command! Exiting the program.");
             break;
     }
-
 }
 
 void read_file(char* file_name, int* arr, int* heap_size)
@@ -68,7 +67,6 @@ void read_file(char* file_name, int* arr, int* heap_size)
         }
     }
     fclose(heap);
-
 }
 
 void read_array(int* arr, int* heap_size)
