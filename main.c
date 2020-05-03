@@ -3,9 +3,13 @@
 
 int main()
 {
-    int arr[21] = {1000, 10, 15, 22, 150, 100, 100, 70, 60, 45, 125, 50, 50, 50, 50, 90, 85, 70, 70, 60, 100};
-    heapify(arr, 4, 21);
-    print_heap(arr, 21);
+    int len=21;
+    int arr[21] = {125, 70, 15, 22, 150, 60, 100, 70, 100, 10, 1000, 50, 90, 50, 50, 50, 85, 70, 45, 60, 100};
+    build_heap(arr, len);
+    print_heap(arr, len);
+    heap_extract_max(arr, &len);
+    print_heap(arr, len);
+    printf("%d", len);
     return 0;
     /*
     int heap[MAX_HEAP_SIZE];

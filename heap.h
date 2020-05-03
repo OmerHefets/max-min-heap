@@ -16,6 +16,8 @@ int check_heap_boundaries(int index, int heap_size);
 int odd_or_even_depth(int index);
 
 void heapify(int* array, int index, int heap_size);
+void build_heap(int* array, int heap_size);
+int heap_extract_max(int* array, int* heap_size);
 
 
 int right(int index);

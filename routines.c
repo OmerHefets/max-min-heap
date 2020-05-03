@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "heap.h"
 
 void heapify(int* array, int index, int heap_size)
@@ -9,7 +10,6 @@ void heapify(int* array, int index, int heap_size)
     }
     if (odd_or_even_depth(index) == ODD_DEPTH) {
         smallest = find_smallest_value_index_sons(array, index, heap_size);
-        printf("%d", smallest);
         swap(array, index, smallest);
         smallest = find_smallest_value_index_grandsons(array, index, heap_size);
         if (smallest != index) {
@@ -18,7 +18,6 @@ void heapify(int* array, int index, int heap_size)
         }
     } else {
         largest = find_largest_value_index_sons(array, index, heap_size);
-        printf("%d", largest);
         swap(array, index, largest);
         largest = find_largest_value_index_grandsons(array, index, heap_size);
         if (largest != index) {
@@ -28,14 +27,25 @@ void heapify(int* array, int index, int heap_size)
     }
 }
 
-void build_heap()
+void build_heap(int* array, int heap_size)
 {
-    return;
+    int i;
+    for (i = (heap_size / 2) ; i >= 1 ; i--) {
+        heapify(array, i, heap_size);
+    }
 }
 
-int heap_extract_max()
+int heap_extract_max(int* array, int* heap_size)
 {
-    return 0;
+    int max;
+    if (*heap_size < 1) {
+        exit(1);
+    }
+    max = array[0];
+    array[0] = array[*heap_size - 1];
+    (*heap_size)--;
+    heapify(array, 1, *heap_size);
+    return max;
 }
 
 int heap_extract_min()
