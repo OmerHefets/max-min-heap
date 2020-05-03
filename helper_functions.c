@@ -76,7 +76,7 @@ int find_largest_value_index_sons(int* arr, int index, int heap_size)
     } else {
         largest = index;
     }
-    if ((r <= heap_size) && arr[r-1] > arr[index-1]) {
+    if ((r <= heap_size) && arr[r-1] > arr[largest-1]) {
         largest = r;
     }
     return largest;
