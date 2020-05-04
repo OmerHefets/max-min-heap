@@ -48,17 +48,48 @@ int heap_extract_max(int* array, int* heap_size)
     return max;
 }
 
-int heap_extract_min()
+int heap_extract_min(int* array, int* heap_size)
 {
-    return 0;
+    int smallest_index, smallest_value;
+    if (*heap_size < 1) {
+        exit(1);
+    }
+    smallest_index = find_smallest_value_index_sons(array, 1, *heap_size);
+    smallest_value = array[smallest_index-1];
+    array[smallest_index-1] = array[*heap_size-1];
+    (*heap_size)--;
+    heapify(array, smallest_index, *heap_size);
+    return smallest_value;
 }
 
-void heap_delete()
+void heap_delete(int* array, int index, int* heap_size)
 {
-    return;
+    swap(array, index, *heap_size);
+    (*heap_size)--;
+    heapify(array, index, *heap_size);
 }
 
-void heap_insert()
+void heap_insert(int* array, int key, int* heap_size)
 {
-    return;
+    int n;
+    n = ++(*heap_size);
+    array[n-1] = key;
+    if (odd_or_even_depth(n) == ODD_DEPTH && n > 1 && array[n-1] > array[parent(n)-1]) {
+        swap(array, n, parent(n));
+        n = parent(n);
+    } else if (odd_or_even_depth(n) == EVEN_DEPTH && n > 1 && array[n-1] < array[parent(n)-1]) {
+        swap(array, n, parent(n));
+        n = parent(n);
+    }
+    if (odd_or_even_depth(n) == ODD_DEPTH) {
+        while (n > 3 && array[n-1] < array[parent(parent(n))-1]) {
+            swap(array, n, parent(parent(n)));
+            n = parent(parent(n));
+        }
+    } else {
+        while (n > 3 && array[n-1] > array[parent(parent(n))-1]) {
+            swap(array, n, parent(parent(n)));
+            n = parent(parent(n));
+        }
+    }
 }

@@ -7,7 +7,11 @@ int main()
     int arr[21] = {125, 70, 15, 22, 150, 60, 100, 70, 100, 10, 1000, 50, 90, 50, 50, 50, 85, 70, 45, 60, 100};
     build_heap(arr, len);
     print_heap(arr, len);
-    heap_extract_max(arr, &len);
+    printf("\n");
+    heap_delete(arr, 9, &len);
+    print_heap(arr, len);
+    printf("\n");
+    heap_insert(arr, 45, &len);
     print_heap(arr, len);
     printf("%d", len);
     return 0;
