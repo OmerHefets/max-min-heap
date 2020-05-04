@@ -5,7 +5,7 @@
 void user_interface(int* arr, int* heap_size)
 {
     int command_number;
-    printf("welcome, welcome...............\n");
+    printf("Welcome to the max-min-heap program.\n");
     printf("Enter 1 to build a new heap or 2 to exit from the program: ");
     scanf("%d", &command_number);
     switch(command_number) {
@@ -33,18 +33,18 @@ void read_heap(int* arr, int* heap_size)
         case(1):
             read_array(arr, heap_size);
             printf("Using routine \"BUILD-HEAP\" to transform the array values to a heap. Processing..\n");
-            /* build-heap-routine */
+            build_heap(arr, *heap_size);
             printf("Done.\n");
-            get_commands_and_execute();
+            get_commands_and_execute(arr, heap_size);
             break;
         case(2):
             printf("Enter your filename (with suffix), assuming the file is in this folder: ");
             scanf("%s", filename);
             read_file(filename, arr, heap_size);
             printf("Using routine \"BUILD-HEAP\" to transform the array values to a heap. Processing..\n");
-            /* build-heap-routine */
+            build_heap(arr, *heap_size);
             printf("Done.\n");
-            get_commands_and_execute();
+            get_commands_and_execute(arr, heap_size);
             break;
         default:
             printf("No such command! Exiting the program.");
@@ -92,39 +92,47 @@ void print_heap(int* arr, int heap_size)
     printf("%d]", arr[i]);
 }
 
-void get_commands_and_execute()
+void get_commands_and_execute(int* arr, int* heap_size)
 {
-    int command_number, user_input;
-    printf("The optional commands are.......................\n");
+    int command_number, user_input, routine_output;
+    printf("The optional commands are: HEAPIFY (1), HEAP-EXTRACT-MAX (2), HEAP-EXTRACT-MIN (3)\n");
+    printf("HEAP-INSERT (4), HEAP-DELETE (5), PRINT-HEAP (6). EXIT PROGRAM (7) \n");
+    printf("Enter the number after a routine to execute it.\n");
     do {
-        printf("Insert number of command: ");
+        printf("\nInsert number of command: ");
         scanf("%d", &command_number);
         switch(command_number) {
             case 1:
                 printf("Insert vertice index to implement heapify: ");
                 scanf("%d", &user_input);
-                /* heapify */
+                heapify(arr, user_input, *heap_size);
                 break;
             case 2:
-                /* extract-max */
+                routine_output = heap_extract_max(arr, heap_size);
+                printf("The maximum value extracted: %d\n", routine_output);
                 break;
             case 3:
-                /* extract-min */
+                routine_output = heap_extract_min(arr, heap_size);
+                printf("The minimum value extracted: %d\n", routine_output);
                 break;
             case 4:
                 printf("Insert the key to be inserted: ");
                 scanf("%d", &user_input);
-                /* insert */
+                heap_insert(arr, user_input, heap_size);
                 break;
             case 5:
                 printf("Insert vertice index to be deleted: ");
                 scanf("%d", &user_input);
-                /* delete */
+                heap_delete(arr, user_input, heap_size);
                 break;
             case 6:
+                print_heap(arr, *heap_size);
+                break;
+            case 7:
+                printf("Exiting the program. Thank you for using it.\n");
                 break;
             default:
                 printf("No such command. try again.\n");
         }
-    } while (command_number != 6);
+    } while (command_number != 7);
 }
