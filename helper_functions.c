@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "heap.h"
 
 int check_heap_boundaries(int index, int heap_size)

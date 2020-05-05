@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include "heap.h"
 
@@ -39,12 +38,15 @@ int heap_extract_max(int* array, int* heap_size)
 {
     int max;
     if (*heap_size < 1) {
+        printf("Trying to extract a number from an empty heap. Start again with a new heap.\n");
         exit(1);
     }
     max = array[0];
     array[0] = array[*heap_size - 1];
     (*heap_size)--;
-    heapify(array, 1, *heap_size);
+    if (*heap_size >= 1) {
+        heapify(array, 1, *heap_size);
+    }
     return max;
 }
 
@@ -52,18 +54,24 @@ int heap_extract_min(int* array, int* heap_size)
 {
     int smallest_index, smallest_value;
     if (*heap_size < 1) {
+        printf("Trying to extract a number from an empty heap. Start again with a new heap.\n");
         exit(1);
     }
     smallest_index = find_smallest_value_index_sons(array, 1, *heap_size);
     smallest_value = array[smallest_index-1];
     array[smallest_index-1] = array[*heap_size-1];
     (*heap_size)--;
-    heapify(array, smallest_index, *heap_size);
+    if (*heap_size >= 1) {
+        heapify(array, smallest_index, *heap_size);
+    }
     return smallest_value;
 }
 
 void heap_delete(int* array, int index, int* heap_size)
 {
+    if (check_heap_boundaries(index, *heap_size) == FALSE) {
+        return;
+    }
     swap(array, index, *heap_size);
     (*heap_size)--;
     heapify(array, index, *heap_size);

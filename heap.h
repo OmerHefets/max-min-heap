@@ -1,9 +1,11 @@
 #include <math.h>
-#define MAX_HEAP_SIZE 100
+#include <stdio.h>
+#define MAX_HEAP_SIZE 1000
 #define TRUE 1
 #define FALSE 0
 #define ODD_DEPTH 1
 #define EVEN_DEPTH 0
+#define FILENAME_SIZE 50
 
 void user_interface(int* arr, int* heap_size);
 void read_heap(int* arr, int* heap_size);
